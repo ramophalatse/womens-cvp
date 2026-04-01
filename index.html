@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Women Centred CVP — Nedbank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+<style>
+  /* ── Heading font ─────────────────────────────────────────── */
+  h1, h2, h3, h4, h5, h6,
+  .phase-title, .detail-hero h2, .hero h1,
+  .nav-logo-label, .detail-hero-tag, .detail-section-title,
+  .phase-number, .hero-badge, .journey-label {
+    font-family: 'Libre Franklin', sans-serif;
+  }
+  /* ── Tokens ─────────────────────────────────────────────── */
+  :root {
+    --ned-green:      #006341;
+    --ned-green-dark: #004d32;
+    --ned-green-lt:   #e6f2ec;
+    --ned-red:        #c8102e;
+    --ned-red-lt:     #fdf0f2;
+    --arrow:          #c8102e;
+
+    /* Light mode */
+    --bg:             #f5f5f5;
+    --surface:        #ffffff;
+    --surface-2:      #f0f0f0;
+    --text-primary:   #1a1a1a;
+    --text-secondary: #555555;
+    --text-on-green:  #ffffff;
+    --border:         #ddd;
+    --nav-bg:         #006341;
+    --nav-text:       #ffffff;
+    --nav-hover:      rgba(255,255,255,0.15);
+    --card-shadow:    0 2px 12px rgba(0,0,0,0.08);
+    --pill-bg:        #e6f2ec;
+    --pill-text:      #006341;
+    --chip-bg:        #f9f9f9;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:             #0f1a15;
+      --surface:        #1a2b22;
+      --surface-2:      #22362a;
+      --text-primary:   #f0f0f0;
+      --text-secondary: #aaaaaa;
+      --text-on-green:  #ffffff;
+      --border:         #2e4a38;
+      --nav-bg:         #004d32;
+      --nav-text:       #ffffff;
+      --nav-hover:      rgba(255,255,255,0.12);
+      --card-shadow:    0 2px 16px rgba(0,0,0,0.4);
+      --pill-bg:        #1e3d2a;
+      --pill-text:      #5fc98a;
+      --chip-bg:        #1f3028;
+    }
+  }
+
+  /* ── Reset ───────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+  }
+
+  /* ── Nav ─────────────────────────────────────────────────── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 60px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .nav-logo svg { width: 36px; height: 36px; flex-shrink: 0; }
+  .nav-logo-label {
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    line-height: 1.2;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.15s;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .nav-links a:hover { background: var(--nav-hover); }
+  .nav-links a.active { background: rgba(255,255,255,0.2); }
+
+  /* hamburger (mobile) */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: #fff; border-radius: 2px;
+    transition: 0.2s;
+  }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--ned-green-dark);
+    padding: 12px 0;
+  }
+  .mobile-menu a {
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .mobile-menu a:hover { background: var(--nav-hover); }
+  .mobile-menu.open { display: flex; }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  /* ── Screens ─────────────────────────────────────────────── */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ── Hero ────────────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--ned-green) 0%, var(--ned-green-dark) 100%);
+    color: #fff;
+    text-align: center;
+    padding: 72px 24px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+    opacity: 0.5;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+  .hero h1 {
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: #00ff6a; }
+  .hero-sub {
+    font-size: 1.15rem;
+    opacity: 0.88;
+    max-width: 560px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  /* ── Journey label ───────────────────────────────────────── */
+  .journey-label {
+    text-align: center;
+    padding: 40px 24px 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* ── Journey ─────────────────────────────────────────────── */
+  .journey {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  /* phase block */
+  .phase {
+    position: relative;
+    background: var(--surface);
+    border-radius: 14px;
+    box-shadow: var(--card-shadow);
+    overflow: visible;
+    border: 1px solid var(--border);
+    transition: transform 0.18s, box-shadow 0.18s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: 0;
+  }
+  .phase:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,99,65,0.18);
+  }
+  .phase:hover .phase-header { background: var(--ned-green-dark); }
+
+  .phase-header {
+    background: var(--ned-green);
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 13px 13px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: background 0.18s;
+  }
+  .phase-number {
+    width: 28px; height: 28px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 800;
+    flex-shrink: 0;
+  }
+  .phase-title {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    flex: 1;
+  }
+  .phase-arrow-icon {
+    opacity: 0.7;
+    font-size: 1rem;
+    transition: transform 0.18s, opacity 0.18s;
+  }
+  .phase:hover .phase-arrow-icon { transform: translateX(4px); opacity: 1; }
+
+  .phase-body {
+    padding: 16px 24px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .chip {
+    background: var(--chip-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* spacing between phases */
+  .arrow-connector { display: none; }
+
+  /* ── Detail screen ───────────────────────────────────────── */
+  .detail-screen { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    margin-bottom: 32px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .back-btn:hover { border-color: var(--ned-green); color: var(--ned-green); }
+
+  .detail-hero {
+    background: linear-gradient(135deg, var(--ned-green), var(--ned-green-dark));
+    color: #fff;
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .detail-hero::after {
+    content: attr(data-num);
+    position: absolute;
+    right: 32px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 7rem;
+    font-weight: 900;
+    opacity: 0.1;
+    line-height: 1;
+  }
+  .detail-hero-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    margin-bottom: 8px;
+  }
+  .detail-hero h2 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .detail-hero-sub {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    max-width: 540px;
+    line-height: 1.6;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .detail-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--card-shadow);
+  }
+  .detail-card-icon {
+    width: 40px; height: 40px;
+    background: var(--ned-green-lt);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    .detail-card-icon { background: #1e3d2a; }
+  }
+  .detail-card h3 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--ned-green);
+    margin-bottom: 6px;
+  }
+  @media (prefers-color-scheme: dark) {
+    .detail-card h3 { color: #5fc98a; }
+  }
+  .detail-card p {
+    font-size: 0.83rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .detail-section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .tag {
+    background: var(--pill-bg);
+    color: var(--pill-text);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .pdf-links { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+  .pdf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1.5px solid var(--ned-green);
+    border-radius: 10px;
+    padding: 10px 16px;
+    color: var(--ned-green);
+    font-size: 0.83rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    cursor: pointer;
+  }
+  .pdf-link:hover { background: var(--ned-green); color: #fff; }
+  @media (prefers-color-scheme: dark) {
+    .pdf-link { color: #5fc98a; border-color: #5fc98a; }
+    .pdf-link:hover { background: var(--ned-green); color: #fff; border-color: var(--ned-green); }
+  }
+
+  /* journey nav row in detail */
+  .phase-nav {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .phase-nav-btn {
+    flex: 1;
+    min-width: 120px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .phase-nav-btn:hover, .phase-nav-btn.active {
+    border-color: var(--ned-green);
+    color: var(--ned-green);
+    background: var(--ned-green-lt);
+  }
+  @media (prefers-color-scheme: dark) {
+    .phase-nav-btn:hover, .phase-nav-btn.active {
+      background: #1e3d2a;
+      color: #5fc98a;
+    }
+  }
+
+  /* footer */
+  .footer {
+    background: var(--ned-green-dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.75rem;
+  }
+  .footer strong { color: rgba(255,255,255,0.9); }
+
+  /* responsive */
+  @media (max-width: 600px) {
+    .detail-hero { padding: 24px 24px; }
+    .detail-hero::after { display: none; }
+    .phase-body { gap: 8px; }
+    .chip { font-size: 0.76rem; padding: 6px 10px; }
+  }
+
+  /* ── Content-flagged card ────────────────────────────────── */
+  .detail-card-linked {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+    user-select: none;
+  }
+  .detail-card-linked:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,99,65,0.16);
+    border-color: var(--ned-green);
+  }
+  .detail-card-linked:active {
+    transform: translateY(-1px) scale(0.985);
+    box-shadow: 0 3px 12px rgba(0,99,65,0.12);
+  }
+  .card-badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 22px; height: 22px;
+    background: #00ff6a;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card-badge svg { width: 12px; height: 12px; }
+
+  /* ── Market Sizing screen ────────────────────────────────── */
+  .ms-screen { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  .ms-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .ms-kpi {
+    border-radius: 14px;
+    padding: 22px 20px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .ms-kpi-tam { background: var(--ned-green); }
+  .ms-kpi-sam { background: #00873a; }
+  .ms-kpi-som { background: #00b04f; }
+  .ms-kpi-label {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 6px;
+  }
+  .ms-kpi-value {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .ms-kpi-desc {
+    font-size: 0.75rem;
+    opacity: 0.78;
+    line-height: 1.4;
+  }
+
+  /* stacked bar chart */
+  .ms-bar-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--card-shadow);
+  }
+  .ms-bar-title {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ms-bar-track {
+    height: 48px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 14px;
+  }
+  .ms-bar-seg {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #fff;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .ms-bar-seg:hover { opacity: 0.85; }
+  .ms-bar-seg-tam { background: var(--ned-green); }
+  .ms-bar-seg-sam { background: #00873a; }
+  .ms-bar-seg-som { background: #00b04f; }
+  .ms-legend {
+    display: flex; gap: 20px; flex-wrap: wrap;
+  }
+  .ms-legend-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 0.8rem; color: var(--text-secondary);
+  }
+  .ms-legend-dot {
+    width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
+  }
+
+  /* data tables */
+  .ms-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 680px) {
+    .ms-two-col { grid-template-columns: 1fr; }
+    .ms-kpi-row { grid-template-columns: 1fr; }
+  }
+  .ms-table-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+  }
+  .ms-table-head {
+    background: var(--ned-green);
+    color: #fff;
+    padding: 12px 18px;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .ms-table { width: 100%; border-collapse: collapse; }
+  .ms-table td {
+    padding: 10px 18px;
+    font-size: 0.82rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-primary);
+    vertical-align: top;
+    line-height: 1.4;
+  }
+  .ms-table tr:last-child td { border-bottom: none; }
+  .ms-table td:last-child {
+    text-align: right;
+    font-weight: 700;
+    color: var(--ned-green);
+    white-space: nowrap;
+  }
+  @media (prefers-color-scheme: dark) {
+    .ms-table td:last-child { color: #5fc98a; }
+  }
+  .ms-table tr.ms-row-highlight td {
+    background: var(--ned-green-lt);
+    font-weight: 700;
+  }
+  @media (prefers-color-scheme: dark) {
+    .ms-table tr.ms-row-highlight td { background: #1e3d2a; }
+  }
+  .ms-table td.ms-pct {
+    color: var(--text-secondary);
+    font-weight: 400;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .ms-three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 680px) {
+    .ms-three-col { grid-template-columns: 1fr; }
+  }
+  .ms-source {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    padding: 16px 0 0;
+    border-top: 1px solid var(--border);
+  }
+  .ms-source a { color: var(--ned-green); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════════════════ -->
+<nav class="nav" id="mainNav">
+  <a class="nav-logo" onclick="showHome()">
+    <!-- Nedbank icon SVG inline -->
+    <svg width="36" height="36" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(0.504242,0.504242)">
+        <polygon fill="#ffffff" points="0.684 5.835 0.684 24.760 8.403 29.785 15.427 25.178 22.454 29.785 29.935 24.760 29.935 5.830 22.454 0.866 15.427 5.384 8.403 0.866"/>
+        <g fill="#006341">
+          <path d="M8.326,0.097 L15.285,4.689 L22.279,0.099 L30.573,5.547 L30.573,25.121 L22.279,30.571 L15.285,25.980 L8.327,30.573 L0.028,25.121 L0.028,5.562 L8.326,0.097 Z M22.332,1.587 L15.392,6.181 L8.452,1.587 L1.338,6.181 L1.338,24.386 L8.452,28.979 L15.392,24.386 L22.332,28.979 L29.273,24.386 L29.273,6.181 L22.332,1.587 Z"/>
+          <path d="M8.452,19.792 L14.004,23.535 L8.452,27.278 L8.452,19.792 Z M22.332,12.476 L22.332,3.289 L27.711,6.862 L27.711,23.365 L2.726,7.032 L8.452,3.289 L22.332,12.476 Z"/>
+        </g>
+      </g>
+    </svg>
+    <span class="nav-logo-label">Nedbank<br/>Women Centred CVP</span>
+  </a>
+  <ul class="nav-links">
+    <li><a onclick="showDetail(0)" id="nav0">Business Case</a></li>
+    <li><a onclick="showDetail(1)" id="nav1">CVP Development</a></li>
+    <li><a onclick="showDetail(2)" id="nav2">Strategy & Go-to-market</a></li>
+    <li><a onclick="showDetail(3)" id="nav3">Internal Alignment</a></li>
+    <li><a onclick="showDetail(4)" id="nav4">Execution</a></li>
+    <li><a onclick="showDetail(5)" id="nav5">Monitoring</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showDetail(0);toggleMenu()">Business Case</a>
+  <a onclick="showDetail(1);toggleMenu()">CVP Development</a>
+  <a onclick="showDetail(2);toggleMenu()">Strategy & Go-to-market</a>
+  <a onclick="showDetail(3);toggleMenu()">Internal Alignment</a>
+  <a onclick="showDetail(4);toggleMenu()">Execution</a>
+  <a onclick="showDetail(5);toggleMenu()">Monitoring</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HOME SCREEN
+═══════════════════════════════════════════════════════════ -->
+<div class="screen active" id="homeScreen">
+
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">Nedbank · Strategic Initiative</div>
+      <h1>Women<br/><span>Centred CVP</span></h1>
+      <p class="hero-sub">A structured journey to build, launch and scale a world-class customer value proposition for women.</p>
+    </div>
+  </div>
+
+  <p class="journey-label">The Journey — click any phase to explore</p>
+
+  <div class="journey">
+
+    <!-- 1 Business Case -->
+    <div class="phase" onclick="showDetail(0)" tabindex="0" role="button" aria-label="Business Case">
+      <div class="phase-header">
+        <div class="phase-number">1</div>
+        <div class="phase-title">Build the Business Case</div>
+        <div class="phase-arrow-icon">→</div>
+      </div>
+      <div class="phase-body">
+        <div class="chip">Gender disaggregated data (internal &amp; external)</div>
+        <div class="chip">Market research — size the opportunity</div>
+        <div class="chip">Identify target segment(s)</div>
+      </div>
+    </div>
+
+    <div class="arrow-connector">▼</div>
+
+    <!-- 2 CVP Development -->
+    <div class="phase" onclick="showDetail(1)" tabindex="0" role="button" aria-label="CVP Development">
+      <div class="phase-header">
+        <div class="phase-number">2</div>
+        <div class="phase-title">Develop the CVP</div>
+        <div class="phase-arrow-icon">→</div>
+      </div>
+      <div class="phase-body">
+        <div class="chip">Identify segment(s): pains, gains &amp; jobs to be done via focus groups &amp; DX</div>
+        <div class="chip">Build CVP: gain creators, pain relievers (products, services, features, benefits)</div>
+      </div>
+    </div>
+
+    <div class="arrow-connector">▼</div>
+
+    <!-- 3 Strategy -->
+    <div class="phase" onclick="showDetail(2)" tabindex="0" role="button" aria-label="Strategy and Go-to-market">
+      <div class="phase-header">
+        <div class="phase-number">3</div>
+        <div class="phase-title">Develop the Strategy &amp; Go-to-market</div>
+        <div class="phase-arrow-icon">→</div>
+      </div>
+      <div class="phase-body">
+        <div class="chip">Products &amp; NPS</div>
+        <div class="chip">Data flags &amp; definition</div>
+        <div class="chip">Brand &amp; TOV</div>
+        <div class="chip">Placement / channels</div>
+        <div class="chip">Timeline</div>
+        <div class="chip">Budgets</div>
+        <div class="chip">KPIs</div>
+      </div>
+    </div>
+
+    <div class="arrow-connector">▼</div>
+
+    <!-- 4 Internal Alignment -->
+    <div class="phase" onclick="showDetail(3)" tabindex="0" role="button" aria-label="Internal Alignment">
+      <div class="phase-header">
+        <div class="phase-number">4</div>
+        <div class="phase-title">Internal Alignment</div>
+        <div class="phase-arrow-icon">→</div>
+      </div>
+      <div class="phase-body">
+        <div class="chip">Implementation plan</div>
+        <div class="chip">Owner, champions &amp; WP team (structure)</div>
+        <div class="chip">Internal comms &amp; training plan for pushing Shnooze</div>
+      </div>
+    </div>
+
+    <div class="arrow-connector">▼</div>
+
+    <!-- 5 Execution -->
+    <div class="phase" onclick="showDetail(4)" tabindex="0" role="button" aria-label="Execution">
+      <div class="phase-header">
+        <div class="phase-number">5</div>
+        <div class="phase-title">Execution</div>
+        <div class="phase-arrow-icon">→</div>
+      </div>
+      <div class="phase-body">
+        <div class="chip">Launch campaign</div>
+        <div class="chip">Rollout program</div>
+        <div class="chip">Forge partnerships</div>
+      </div>
+    </div>
+
+    <div class="arrow-connector">▼</div>
+
+    <!-- 6 Monitoring -->
+    <div class="phase" onclick="showDetail(5)" tabindex="0" role="button" aria-label="Monitoring">
+      <div class="phase-header">
+        <div class="phase-number">6</div>
+        <div class="phase-title">Monitoring &amp; Evaluation</div>
+        <div class="phase-arrow-icon">→</div>
+      </div>
+      <div class="phase-body">
+        <div class="chip">Track KPIs</div>
+        <div class="chip">Periodically review &amp; reassess program</div>
+      </div>
+    </div>
+
+  </div><!-- /journey -->
+</div><!-- /homeScreen -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     DETAIL SCREENS (6)
+═══════════════════════════════════════════════════════════ -->
+
+<!-- ── 0 · Business Case ──────────────────────────────────── -->
+<div class="screen" id="detail-0">
+  <div class="detail-screen">
+    <button class="back-btn" onclick="showHome()">← Back to Journey</button>
+
+    <div class="detail-hero" data-num="1">
+      <div class="detail-hero-tag">Phase 1 · Foundation</div>
+      <h2>Build the Business Case</h2>
+      <p class="detail-hero-sub">Establish the evidence base that justifies investment in a Women Centred CVP — grounded in data, market insight and clear segment definition.</p>
+    </div>
+
+    <div class="detail-section-title">Key Activities</div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-icon">📊</div>
+        <h3>Gender Disaggregated Data</h3>
+        <p>Audit internal data (CRM, transactional, NPS) and supplement with external gender-lens datasets to surface the women's opportunity.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🔍</div>
+        <h3>Market Research</h3>
+        <p>Size the total addressable market for women's financial services in target geographies. Benchmark against regional and global peers.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🎯</div>
+        <h3>Target Segment Identification</h3>
+        <p>Define 1–3 priority women's segments by income band, life stage or business size that represent the highest value and strategic fit.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">💡</div>
+        <h3>Opportunity Sizing</h3>
+        <p>Translate data into a financial model — revenue uplift, wallet share, retention and NPS gains — to secure executive sponsorship.</p>
+      </div>
+
+      <!-- Market Sizing — linked tile -->
+      <div class="detail-card detail-card-linked" onclick="showMarketSizing()" tabindex="0" role="button" aria-label="Open Market Sizing detail">
+        <div class="card-badge" title="Contains data">
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 6.5L4.8 9.5L10 3" stroke="#006341" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="detail-card-icon">📐</div>
+        <h3>Market Sizing</h3>
+        <p>South Africa retail market sizing — TAM, SAM and SOM analysis for women's financial services using Global Findex data.</p>
+      </div>
+    </div>
+
+    <div class="detail-section-title">Key Questions to Answer</div>
+    <div class="tag-list">
+      <span class="tag">What % of our client base is women?</span>
+      <span class="tag">What is their revenue contribution vs. potential?</span>
+      <span class="tag">Which segments are underserved?</span>
+      <span class="tag">What does the competitive landscape look like?</span>
+      <span class="tag">What is the ROI of serving women better?</span>
+    </div>
+
+    <div class="detail-section-title">Reference Materials</div>
+    <div class="pdf-links">
+      <a class="pdf-link" href="1. Building the Foundations of the Business Case.pdf">📄 Building the Foundations of the Business Case</a>
+      <a class="pdf-link" href="2. Becoming a Gender Data Driven Organisation.pdf">📄 Becoming a Gender Data Driven Organisation</a>
+    </div>
+
+    <div class="detail-section-title">Navigate Phases</div>
+    <div class="phase-nav" id="phaseNav0"></div>
+  </div>
+</div>
+
+<!-- ── 1 · CVP Development ────────────────────────────────── -->
+<div class="screen" id="detail-1">
+  <div class="detail-screen">
+    <button class="back-btn" onclick="showHome()">← Back to Journey</button>
+
+    <div class="detail-hero" data-num="2">
+      <div class="detail-hero-tag">Phase 2 · Design</div>
+      <h2>CVP Development</h2>
+      <p class="detail-hero-sub">Translate segment insight into a compelling, differentiated value proposition — solving real pains and amplifying meaningful gains for women clients.</p>
+    </div>
+
+    <div class="detail-section-title">Key Activities</div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-icon">🗣️</div>
+        <h3>Pains, Gains &amp; Jobs to be Done</h3>
+        <p>Run structured focus groups and design thinking workshops (DX) to deeply understand what women need — financially and beyond.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">✨</div>
+        <h3>Gain Creators</h3>
+        <p>Design features, services and experiences that directly amplify outcomes women value: wealth building, business growth, security, community.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🩹</div>
+        <h3>Pain Relievers</h3>
+        <p>Remove friction points: complex processes, non-inclusive language, products not designed for women's financial journeys.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🏗️</div>
+        <h3>CVP Architecture</h3>
+        <p>Bundle products, services, digital features and partnerships into a coherent, branded women's proposition with clear articulation.</p>
+      </div>
+    </div>
+
+    <div class="detail-section-title">CVP Building Blocks</div>
+    <div class="tag-list">
+      <span class="tag">Transactional banking</span>
+      <span class="tag">Investment &amp; savings</span>
+      <span class="tag">SME lending</span>
+      <span class="tag">Insurance</span>
+      <span class="tag">Financial education</span>
+      <span class="tag">Mentorship networks</span>
+      <span class="tag">Ecosystem partnerships</span>
+      <span class="tag">Digital-first UX</span>
+    </div>
+
+    <div class="detail-section-title">Reference Materials</div>
+    <div class="pdf-links">
+      <a class="pdf-link" href="3. Building a Compelling CVP to Serve Women's Markets.pdf">📄 Building a Compelling CVP to Serve Women's Markets</a>
+    </div>
+
+    <div class="detail-section-title">Navigate Phases</div>
+    <div class="phase-nav" id="phaseNav1"></div>
+  </div>
+</div>
+
+<!-- ── 2 · Strategy & GTM ─────────────────────────────────── -->
+<div class="screen" id="detail-2">
+  <div class="detail-screen">
+    <button class="back-btn" onclick="showHome()">← Back to Journey</button>
+
+    <div class="detail-hero" data-num="3">
+      <div class="detail-hero-tag">Phase 3 · Planning</div>
+      <h2>Strategy &amp; Go-to-market</h2>
+      <p class="detail-hero-sub">Define the full GTM plan — from brand and tone of voice to channel strategy, timelines, budgets and the KPIs that will define success.</p>
+    </div>
+
+    <div class="detail-section-title">Key Activities</div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-icon">🛍️</div>
+        <h3>Products &amp; NPS</h3>
+        <p>Finalise the product set tied to the CVP and establish NPS baselines to measure women's experience uplift post-launch.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🏷️</div>
+        <h3>Brand &amp; Tone of Voice</h3>
+        <p>Develop inclusive, empowering brand positioning and communications guidelines that genuinely resonate with women clients.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">📡</div>
+        <h3>Placement &amp; Channels</h3>
+        <p>Map the optimal mix of digital, branch, partner and community channels to reach and engage target segments at every touchpoint.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🗂️</div>
+        <h3>Data Flags &amp; Definition</h3>
+        <p>Establish the data taxonomy to identify, tag and track women clients across systems — enabling segmentation and ongoing measurement.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">📅</div>
+        <h3>Timeline</h3>
+        <p>Build the phased launch roadmap with clear milestones: pilot, soft-launch, full rollout and scale — with owners and dependencies.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">💰</div>
+        <h3>Budgets &amp; KPIs</h3>
+        <p>Allocate budget across product, marketing and operations. Define the KPI framework — acquisition, retention, revenue, engagement and NPS.</p>
+      </div>
+    </div>
+
+    <div class="detail-section-title">Reference Materials</div>
+    <div class="pdf-links">
+      <a class="pdf-link" href="4. Developing a Gender-Lens Marketing Approach.pdf">📄 Developing a Gender-Lens Marketing Approach</a>
+      <a class="pdf-link" href="5. Scaling the Program to New Segments.pdf">📄 Scaling the Program to New Segments</a>
+      <a class="pdf-link" href="7. Finalising the Strategy.pdf">📄 Finalising the Strategy</a>
+    </div>
+
+    <div class="detail-section-title">Navigate Phases</div>
+    <div class="phase-nav" id="phaseNav2"></div>
+  </div>
+</div>
+
+<!-- ── 3 · Internal Alignment ─────────────────────────────── -->
+<div class="screen" id="detail-3">
+  <div class="detail-screen">
+    <button class="back-btn" onclick="showHome()">← Back to Journey</button>
+
+    <div class="detail-hero" data-num="4">
+      <div class="detail-hero-tag">Phase 4 · Alignment</div>
+      <h2>Internal Alignment</h2>
+      <p class="detail-hero-sub">Mobilise the organisation — build the governance structure, empower champions and equip every team to deliver the women's CVP with confidence.</p>
+    </div>
+
+    <div class="detail-section-title">Key Activities</div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-icon">📋</div>
+        <h3>Implementation Plan</h3>
+        <p>Translate the strategy into a detailed workplan: who owns what, by when, with clear interdependencies and escalation paths.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">👥</div>
+        <h3>Ownership &amp; Champions</h3>
+        <p>Appoint an executive sponsor, program owner, cross-functional working party and branch-level champions to drive accountability.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">📣</div>
+        <h3>Internal Comms</h3>
+        <p>Design an internal campaign to build awareness, excitement and commitment across business units — from frontline to C-suite.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🎓</div>
+        <h3>Training Programme</h3>
+        <p>Develop gender-intelligence training for all client-facing staff and equip relationship managers with the tools to have better conversations with women clients.</p>
+      </div>
+    </div>
+
+    <div class="detail-section-title">Success Markers</div>
+    <div class="tag-list">
+      <span class="tag">Executive sponsor confirmed</span>
+      <span class="tag">Working party active</span>
+      <span class="tag">All staff trained</span>
+      <span class="tag">Internal comms launched</span>
+      <span class="tag">RACI documented</span>
+    </div>
+
+    <div class="detail-section-title">Reference Materials</div>
+    <div class="pdf-links">
+      <a class="pdf-link" href="6. Embedding the Program - Internal Alignment.pdf">📄 Embedding the Program — Internal Alignment</a>
+      <a class="pdf-link" href="9. The Pitch - Selling it Back at the Office.pdf">📄 The Pitch — Selling it Back at the Office</a>
+      <a class="pdf-link" href="10. Building a Gender Intelligent Organisation.pdf">📄 Building a Gender Intelligent Organisation</a>
+    </div>
+
+    <div class="detail-section-title">Navigate Phases</div>
+    <div class="phase-nav" id="phaseNav3"></div>
+  </div>
+</div>
+
+<!-- ── 4 · Execution ──────────────────────────────────────── -->
+<div class="screen" id="detail-4">
+  <div class="detail-screen">
+    <button class="back-btn" onclick="showHome()">← Back to Journey</button>
+
+    <div class="detail-hero" data-num="5">
+      <div class="detail-hero-tag">Phase 5 · Launch</div>
+      <h2>Execution</h2>
+      <p class="detail-hero-sub">Launch with impact — run the campaign, roll out the programme and forge the partnerships that extend Nedbank's reach into women's communities.</p>
+    </div>
+
+    <div class="detail-section-title">Key Activities</div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-icon">🚀</div>
+        <h3>Launch Campaign</h3>
+        <p>Execute a multi-channel marketing campaign targeting priority segments — digital, social, branch activation, PR and community events.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">📦</div>
+        <h3>Rollout Programme</h3>
+        <p>Phase the rollout by segment and geography. Capture real-time learnings to refine the CVP before each subsequent wave.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🤝</div>
+        <h3>Forge Partnerships</h3>
+        <p>Activate ecosystem partners — women's business networks, NGOs, fintechs, corporates, government — to extend reach and deepen value.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🔁</div>
+        <h3>Feedback Loops</h3>
+        <p>Establish rapid client feedback mechanisms (NPS surveys, focus groups, digital analytics) to enable agile iteration throughout rollout.</p>
+      </div>
+    </div>
+
+    <div class="detail-section-title">Launch Readiness Checklist</div>
+    <div class="tag-list">
+      <span class="tag">Product live in systems</span>
+      <span class="tag">Marketing assets approved</span>
+      <span class="tag">Staff trained &amp; briefed</span>
+      <span class="tag">Partners onboarded</span>
+      <span class="tag">KPI dashboard live</span>
+      <span class="tag">Comms plan activated</span>
+    </div>
+
+    <div class="detail-section-title">Navigate Phases</div>
+    <div class="phase-nav" id="phaseNav4"></div>
+  </div>
+</div>
+
+<!-- ── 5 · Monitoring ─────────────────────────────────────── -->
+<div class="screen" id="detail-5">
+  <div class="detail-screen">
+    <button class="back-btn" onclick="showHome()">← Back to Journey</button>
+
+    <div class="detail-hero" data-num="6">
+      <div class="detail-hero-tag">Phase 6 · Sustain</div>
+      <h2>Monitoring &amp; Evaluation</h2>
+      <p class="detail-hero-sub">Close the loop — track performance against KPIs, identify what's working, course-correct and continuously raise the bar for women's experience.</p>
+    </div>
+
+    <div class="detail-section-title">Key Activities</div>
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-card-icon">📈</div>
+        <h3>Track KPIs</h3>
+        <p>Monitor the full KPI suite: acquisition rates, product penetration, revenue per client, NPS, retention, and engagement metrics — disaggregated by gender.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🔄</div>
+        <h3>Periodic Programme Review</h3>
+        <p>Conduct quarterly programme reviews with the working party. Assess results, surface blockers and agree adjustments to strategy or execution.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">📉</div>
+        <h3>Gender Data Scorecards</h3>
+        <p>Publish internal gender data scorecards to track progress against targets and maintain accountability across the organisation.</p>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">🌱</div>
+        <h3>Scale &amp; Iterate</h3>
+        <p>Use data to identify the next wave of segments, products and markets to scale into — making the programme self-reinforcing over time.</p>
+      </div>
+    </div>
+
+    <div class="detail-section-title">KPI Framework</div>
+    <div class="tag-list">
+      <span class="tag">New women clients acquired</span>
+      <span class="tag">Product cross-sell ratio</span>
+      <span class="tag">Women NPS vs. total NPS</span>
+      <span class="tag">Revenue from women segment</span>
+      <span class="tag">Churn rate</span>
+      <span class="tag">Digital engagement</span>
+      <span class="tag">SME loan book — women</span>
+      <span class="tag">Staff gender-IQ score</span>
+    </div>
+
+    <div class="detail-section-title">Reference Materials</div>
+    <div class="pdf-links">
+      <a class="pdf-link" href="8. Measuring, Monitoring & Refining.pdf">📄 Measuring, Monitoring &amp; Refining</a>
+    </div>
+
+    <div class="detail-section-title">Navigate Phases</div>
+    <div class="phase-nav" id="phaseNav5"></div>
+  </div>
+</div>
+
+<!-- ── Market Sizing ───────────────────────────────────────── -->
+<div class="screen" id="detail-ms">
+  <div class="ms-screen">
+    <button class="back-btn" onclick="showDetail(0)">← Back to Business Case</button>
+
+    <div class="detail-hero" data-num="">
+      <div class="detail-hero-tag">Phase 1 · Business Case</div>
+      <h2>Retail Market Sizing — South Africa</h2>
+      <p class="detail-hero-sub">Top-down TAM › SAM › SOM analysis for women's financial services. Source: Global Findex Database 2021, World Bank. Reference year: 2025.</p>
+    </div>
+
+    <!-- KPI summary row -->
+    <div class="ms-kpi-row">
+      <div class="ms-kpi ms-kpi-tam">
+        <div class="ms-kpi-label">TAM · Total Addressable Market</div>
+        <div class="ms-kpi-value">23,175,919</div>
+        <div class="ms-kpi-desc">Women aged 15+ in South Africa</div>
+      </div>
+      <div class="ms-kpi ms-kpi-sam">
+        <div class="ms-kpi-label">SAM · Serviceable Available Market</div>
+        <div class="ms-kpi-value">23,088,288</div>
+        <div class="ms-kpi-desc">Unbanked + underbanked women reachable</div>
+      </div>
+      <div class="ms-kpi ms-kpi-som">
+        <div class="ms-kpi-label">SOM · Target Share of Market</div>
+        <div class="ms-kpi-value">19,625,045</div>
+        <div class="ms-kpi-desc">At 85% target penetration rate</div>
+      </div>
+    </div>
+
+    <!-- Proportional bar -->
+    <div class="ms-bar-wrap">
+      <div class="ms-bar-title">Proportional Market Funnel (women, South Africa 2025)</div>
+      <!-- TAM bar -->
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.72rem;color:var(--text-secondary);margin-bottom:4px;font-weight:600;">TAM</div>
+        <div class="ms-bar-track">
+          <div class="ms-bar-seg ms-bar-seg-tam" style="width:100%;">23,175,919</div>
+        </div>
+      </div>
+      <!-- SAM bar -->
+      <div style="margin-bottom:8px;">
+        <div style="font-size:0.72rem;color:var(--text-secondary);margin-bottom:4px;font-weight:600;">SAM</div>
+        <div class="ms-bar-track">
+          <div class="ms-bar-seg ms-bar-seg-sam" style="width:99.6%;">23,088,288</div>
+          <div style="flex:1;"></div>
+        </div>
+      </div>
+      <!-- SOM bar -->
+      <div style="margin-bottom:16px;">
+        <div style="font-size:0.72rem;color:var(--text-secondary);margin-bottom:4px;font-weight:600;">SOM (85%)</div>
+        <div class="ms-bar-track">
+          <div class="ms-bar-seg ms-bar-seg-som" style="width:84.7%;">19,625,045</div>
+          <div style="flex:1;"></div>
+        </div>
+      </div>
+      <div class="ms-legend">
+        <div class="ms-legend-item"><div class="ms-legend-dot" style="background:var(--ned-green);"></div> TAM — Total female population 15+</div>
+        <div class="ms-legend-item"><div class="ms-legend-dot" style="background:#00873a;"></div> SAM — Unbanked &amp; underbanked women</div>
+        <div class="ms-legend-item"><div class="ms-legend-dot" style="background:#00b04f;"></div> SOM — Target penetration at 85%</div>
+      </div>
+    </div>
+
+    <!-- Two data tables side by side -->
+    <div class="ms-two-col">
+
+      <!-- Population funnel -->
+      <div class="ms-table-card">
+        <div class="ms-table-head">Population Funnel</div>
+        <table class="ms-table">
+          <tr>
+            <td>Total Female Population</td>
+            <td>31,546,778</td>
+          </tr>
+          <tr>
+            <td>Female Population Under 15</td>
+            <td style="color:var(--text-secondary);font-weight:400;">− 8,370,859</td>
+          </tr>
+          <tr class="ms-row-highlight">
+            <td><strong>TAM (Women 15+)</strong></td>
+            <td>23,175,919</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- SAM breakdown -->
+      <div class="ms-table-card">
+        <div class="ms-table-head">Serviceable Market Breakdown</div>
+        <table class="ms-table">
+          <tr>
+            <td>Women with Bank / Mobile Money Account</td>
+            <td>19,787,162</td>
+          </tr>
+          <tr>
+            <td>Women with Debit Cards</td>
+            <td>13,643,849</td>
+          </tr>
+          <tr>
+            <td>Women without Debit Cards</td>
+            <td>13,993,055</td>
+          </tr>
+          <tr>
+            <td>Total Women Unbanked</td>
+            <td>3,388,757</td>
+          </tr>
+          <tr>
+            <td>Women without Credit Cards</td>
+            <td>9,182,864</td>
+          </tr>
+          <tr class="ms-row-highlight">
+            <td><strong>SAM (Unbanked + Underbanked)</strong></td>
+            <td>23,088,288</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Percentage breakdown -->
+    <div class="detail-section-title">Penetration Rates vs. TAM</div>
+    <div class="ms-three-col" style="margin-bottom:32px;">
+      <div class="ms-table-card">
+        <div class="ms-table-head" style="background:#00873a;">Banked</div>
+        <table class="ms-table">
+          <tr><td>Bank / Mobile Money</td><td>85.4%</td></tr>
+          <tr><td>Hold Debit Cards</td><td>58.9%</td></tr>
+        </table>
+      </div>
+      <div class="ms-table-card">
+        <div class="ms-table-head" style="background:#005a2b;">Underserved</div>
+        <table class="ms-table">
+          <tr><td>Without Debit Cards</td><td>41.1%</td></tr>
+          <tr><td>Without Credit Cards</td><td>39.6%</td></tr>
+        </table>
+      </div>
+      <div class="ms-table-card">
+        <div class="ms-table-head" style="background:#004d32;">Unbanked</div>
+        <table class="ms-table">
+          <tr><td>Total Unbanked</td><td>14.6%</td></tr>
+          <tr><td>Manually Input Underbanked</td><td>85.0%*</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- SOM summary -->
+    <div class="ms-bar-wrap" style="margin-bottom:32px;">
+      <div class="ms-bar-title">Top-Down Summary — Retail Women's Market</div>
+      <table class="ms-table" style="width:100%;">
+        <tr class="ms-row-highlight">
+          <td style="font-family:'Libre Franklin',sans-serif;font-weight:700;">TAM</td>
+          <td style="text-align:left;color:var(--text-secondary);font-weight:400;">Total women aged 15+</td>
+          <td>23,175,919</td>
+        </tr>
+        <tr>
+          <td style="font-family:'Libre Franklin',sans-serif;font-weight:700;">SAM</td>
+          <td style="text-align:left;color:var(--text-secondary);font-weight:400;">Unbanked + underbanked women</td>
+          <td>23,088,288</td>
+        </tr>
+        <tr>
+          <td style="font-family:'Libre Franklin',sans-serif;font-weight:700;color:#00b04f;">SOM</td>
+          <td style="text-align:left;color:var(--text-secondary);font-weight:400;">At 85% target penetration</td>
+          <td style="color:#00b04f;">19,625,045</td>
+        </tr>
+      </table>
+    </div>
+
+    <p class="ms-source">
+      * Unbanked: not served by a bank/mobile money provider or similar financial institution. &nbsp;** Underbanked: does not have access to a full range of banking options.<br/>
+      Source: <a href="https://www.worldbank.org/en/publication/globalfindex" target="_blank">The Global Findex Database 2021</a>, Washington, DC: World Bank. &nbsp;Tool: Financial Alliance for Women — Online Business Case Tool (Retail Market Sizing module).
+    </p>
+  </div>
+</div>
+
+<!-- footer -->
+<footer class="footer">
+  <strong>Nedbank Women Centred CVP</strong> · Strategic Programme · 2025
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════ -->
+<script>
+  const PHASES = [
+    'Business Case',
+    'CVP Development',
+    'Strategy & GTM',
+    'Internal Alignment',
+    'Execution',
+    'Monitoring'
+  ];
+
+  // Build phase nav buttons in each detail screen
+  PHASES.forEach((label, i) => {
+    for (let d = 0; d < 6; d++) {
+      const nav = document.getElementById('phaseNav' + d);
+      if (!nav) continue;
+      const btn = document.createElement('button');
+      btn.className = 'phase-nav-btn' + (i === d ? ' active' : '');
+      btn.textContent = (i + 1) + '. ' + label;
+      btn.onclick = () => showDetail(i);
+      nav.appendChild(btn);
+    }
+  });
+
+  function showHome() {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('homeScreen').classList.add('active');
+    // clear nav active
+    PHASES.forEach((_, i) => {
+      const el = document.getElementById('nav' + i);
+      if (el) el.classList.remove('active');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showDetail(index) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('detail-' + index).classList.add('active');
+    PHASES.forEach((_, i) => {
+      const el = document.getElementById('nav' + i);
+      if (el) el.classList.toggle('active', i === index);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function showMarketSizing() {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('detail-ms').classList.add('active');
+    PHASES.forEach((_, i) => {
+      const el = document.getElementById('nav' + i);
+      if (el) el.classList.toggle('active', i === 0);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // keyboard accessibility
+  document.querySelectorAll('.phase, .detail-card-linked').forEach(el => {
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+    });
+  });
+</script>
+</body>
+</html>
