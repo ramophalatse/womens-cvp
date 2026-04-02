@@ -89,12 +89,13 @@
     gap: 12px;
     text-decoration: none;
     cursor: pointer;
+    
   }
-  .nav-logo svg { width: 36px; height: 36px; flex-shrink: 0; }
+  .nav-logo svg { width: 36px; height: 36px; flex-shrink: 0;transform: rotate(180deg);  }
   .nav-logo-label {
     color: #fff;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     opacity: 0.85;
@@ -369,6 +370,7 @@
     border-radius: 12px;
     padding: 20px;
     box-shadow: var(--card-shadow);
+    position: relative;
   }
   .detail-card-icon {
     width: 40px; height: 40px;
@@ -520,6 +522,23 @@
     display: flex; align-items: center; justify-content: center;
   }
   .card-badge svg { width: 12px; height: 12px; }
+
+  .card-owner {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: var(--ned-green-lt);
+    color: var(--ned-green);
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 9px;
+    border-radius: 20px;
+    line-height: 1.4;
+  }
+  @media (prefers-color-scheme: dark) {
+    .card-owner { background: #1e3d2a; color: #5fc98a; }
+  }
 
   /* ── Market Sizing screen ────────────────────────────────── */
   .ms-screen { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
@@ -686,6 +705,14 @@
   @media (max-width: 680px) {
     .ms-three-col { grid-template-columns: 1fr; }
   }
+  /* override for text-heavy tables (not numeric) */
+  .ms-table--text td:last-child {
+    text-align: left;
+    font-weight: 400;
+    color: var(--text-primary);
+    white-space: normal;
+  }
+
   .ms-source {
     font-size: 0.72rem;
     color: var(--text-secondary);
@@ -694,6 +721,128 @@
     border-top: 1px solid var(--border);
   }
   .ms-source a { color: var(--ned-green); }
+
+  /* ── Business Case Framework diagram ────────────────────── */
+  .bc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    margin-bottom: 32px;
+    box-shadow: var(--card-shadow);
+    overflow-x: auto;
+  }
+  .bc-card-title {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ned-green);
+    margin-bottom: 28px;
+  }
+  @media (prefers-color-scheme: dark) { .bc-card-title { color: #00ff6a; } }
+
+  .bc-grid {
+    display: grid;
+    grid-template-columns: 1fr 22px 1fr 22px 1fr 22px 1fr 32px 120px;
+    grid-template-rows: auto auto auto;
+    min-width: 700px;
+    align-items: center;
+  }
+  /* top questions */
+  .bc-tq1  { grid-column: 1;     grid-row: 1; align-self: end;   padding-bottom: 14px; }
+  .bc-tq34 { grid-column: 5 / 8; grid-row: 1; align-self: end;   padding-bottom: 14px; }
+  /* circles */
+  .bc-c1 { grid-column: 1; grid-row: 2; display: flex; justify-content: center; }
+  .bc-c2 { grid-column: 3; grid-row: 2; display: flex; justify-content: center; }
+  .bc-c3 { grid-column: 5; grid-row: 2; display: flex; justify-content: center; }
+  .bc-c4 { grid-column: 7; grid-row: 2; display: flex; justify-content: center; }
+  /* connectors */
+  .bc-ln1 { grid-column: 2; grid-row: 2; height: 3px; width: 100%; background: var(--ned-green); align-self: center; }
+  .bc-ln2 { grid-column: 4; grid-row: 2; height: 3px; width: 100%; background: var(--ned-green); align-self: center; }
+  .bc-ln3 { grid-column: 6; grid-row: 2; height: 3px; width: 100%; background: var(--ned-green); align-self: center; }
+  .bc-arr { grid-column: 8; grid-row: 2; align-self: center; display: flex; align-items: center; justify-content: center; }
+  .bc-arr svg { width: 20px; height: 20px; }
+  /* outcome */
+  .bc-outcome {
+    grid-column: 9; grid-row: 2;
+    background: var(--ned-green-dark);
+    color: #00ff6a;
+    border-radius: 14px;
+    padding: 18px 14px;
+    text-align: center;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1.4;
+    align-self: center;
+  }
+  /* bottom questions */
+  .bc-bq2  { grid-column: 3;     grid-row: 3; align-self: start; padding-top: 14px; }
+  .bc-bq34 { grid-column: 5 / 8; grid-row: 3; align-self: start; padding-top: 14px; }
+  /* question text */
+  .bc-q { font-size: 0.7rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 5px; }
+
+  /* ── Life-moments matrix table ───────────────────────────── */
+  .lm-wrap { overflow-x: auto; margin-bottom: 32px; }
+  .lm-table {
+    width: 100%;
+    min-width: 860px;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    line-height: 1.55;
+  }
+  .lm-table th {
+    background: var(--ned-green);
+    color: #fff;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 11px 14px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.15);
+    vertical-align: middle;
+  }
+  .lm-table th.lm-corner {
+    background: var(--ned-green-dark);
+    text-align: left;
+  }
+  .lm-table td {
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-primary);
+    line-height: 1.55;
+  }
+  .lm-table td.lm-row-head {
+    background: var(--surface-2);
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--ned-green);
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 110px;
+  }
+  @media (prefers-color-scheme: dark) {
+    .lm-table td.lm-row-head { color: #5fc98a; }
+  }
+  .lm-table tr:nth-child(odd) td:not(.lm-row-head) { background: var(--surface); }
+  .lm-table tr:nth-child(even) td:not(.lm-row-head) { background: var(--chip-bg); }
+  /* circle element */
+  .bc-circle {
+    width: 118px; height: 118px;
+    border-radius: 50%;
+    background: #00ff6a;
+    color: var(--ned-green);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 800;
+    padding: 14px;
+    line-height: 1.35;
+  }
 </style>
 </head>
 <body>
@@ -864,47 +1013,11 @@
     <div class="detail-hero" data-num="1">
       <div class="detail-hero-tag">Phase 1 · Foundation</div>
       <h2>Build the Business Case</h2>
-      <p class="detail-hero-sub">Establish the evidence base that justifies investment in a Women Centred CVP — grounded in data, market insight and clear segment definition.</p>
-    </div>
-
-    <div class="detail-section-title">Key Activities</div>
-    <div class="detail-grid">
-      <div class="detail-card">
-        <div class="detail-card-icon">📊</div>
-        <h3>Gender Disaggregated Data</h3>
-        <p>Audit internal data (CRM, transactional, NPS) and supplement with external gender-lens datasets to surface the women's opportunity.</p>
-      </div>
-      <div class="detail-card">
-        <div class="detail-card-icon">🔍</div>
-        <h3>Market Research</h3>
-        <p>Size the total addressable market for women's financial services in target geographies. Benchmark against regional and global peers.</p>
-      </div>
-      <div class="detail-card">
-        <div class="detail-card-icon">🎯</div>
-        <h3>Target Segment Identification</h3>
-        <p>Define 1–3 priority women's segments by income band, life stage or business size that represent the highest value and strategic fit.</p>
-      </div>
-      <div class="detail-card">
-        <div class="detail-card-icon">💡</div>
-        <h3>Opportunity Sizing</h3>
-        <p>Translate data into a financial model — revenue uplift, wallet share, retention and NPS gains — to secure executive sponsorship.</p>
-      </div>
-
-      <!-- Market Sizing — linked tile -->
-      <div class="detail-card detail-card-linked" onclick="showMarketSizing()" tabindex="0" role="button" aria-label="Open Market Sizing detail">
-        <div class="card-badge" title="Contains data">
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 6.5L4.8 9.5L10 3" stroke="#006341" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="detail-card-icon">📐</div>
-        <h3>Market Sizing</h3>
-        <p>South Africa retail market sizing — TAM, SAM and SOM analysis for women's financial services using Global Findex data.</p>
-      </div>
+      <p class="detail-hero-sub">Establish the evidence base that justifies investment in a Women Centred CVP. Grounded in data, market insight and clear segment definition.</p>
     </div>
 
     <div class="detail-section-title">Key Questions to Answer</div>
-    <div class="tag-list">
+    <div class="tag-list" style="margin-bottom:32px;">
       <span class="tag">What % of our client base is women?</span>
       <span class="tag">What is their revenue contribution vs. potential?</span>
       <span class="tag">Which segments are underserved?</span>
@@ -912,10 +1025,51 @@
       <span class="tag">What is the ROI of serving women better?</span>
     </div>
 
+    <div class="detail-section-title">Key Activities</div>
+    <div class="detail-grid">
+      <div class="detail-card detail-card-linked" onclick="showGenderData()" tabindex="0" role="button" aria-label="Open Gender Disaggregated Data detail">
+        <div class="card-owner">Buli</div>
+        <div class="detail-card-icon">📊</div>
+        <h3>Gender Disaggregated Data</h3>
+        <p>Audit internal data (CRM, transactional, etc...) and supplement with external gender-lens datasets to surface the women's opportunity.</p>
+      </div>
+      <div class="detail-card detail-card-linked" onclick="showMarketResearch()" tabindex="0" role="button" aria-label="Open Market Research detail">
+        <div class="card-owner">Buli</div>
+        <div class="detail-card-icon">🔍</div>
+        <h3>Market Research</h3>
+        <p>Understand the external environment: Demographics, employment, financial behaviour and cultural factors, that shape the women's market opportunity.</p>
+      </div>
+      <div class="detail-card detail-card-linked" onclick="showTargetSegment()" tabindex="0" role="button" aria-label="Open Target Segment Identification detail">
+        <div class="card-owner">Mivuyo</div>
+        <div class="detail-card-icon">🎯</div>
+        <h3>Target Segment Identification</h3>
+        <p>Identify priority retail women's segments by life stage or income band that represent the highest value and strategic fit for the pilot CVP.</p>
+      </div>
+      <div class="detail-card">
+        <div class="card-owner">Ramo</div>
+        <div class="detail-card-icon">💡</div>
+        <h3>Opportunity Sizing</h3>
+        <p>Translate data into a financial model: revenue uplift, wallet share, retention and NPS gains, to secure support for execution.</p>
+      </div>
+
+      <!-- Market Sizing — linked tile -->
+      <div class="detail-card detail-card-linked" onclick="showMarketSizing()" tabindex="0" role="button" aria-label="Open Market Sizing detail">
+        <div class="card-badge" title="Content complete">
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 6.5L4.8 9.5L10 3" stroke="#006341" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="detail-card-icon">📐</div>
+        <h3>Market Sizing</h3>
+        <p>South Africa retail market sizing: TAM, SAM and SOM analysis for women's financial services using Global Findex data.</p>
+      </div>
+    </div>
+
     <div class="detail-section-title">Reference Materials</div>
     <div class="pdf-links">
       <a class="pdf-link" href="1. Building the Foundations of the Business Case.pdf">📄 Building the Foundations of the Business Case</a>
       <a class="pdf-link" href="2. Becoming a Gender Data Driven Organisation.pdf">📄 Becoming a Gender Data Driven Organisation</a>
+      <a class="pdf-link" href="Measuring the Value of the Female Economy.pdf" target="_blank">📄 Measuring the Value of the Female Economy</a>
     </div>
 
     <div class="detail-section-title">Navigate Phases</div>
@@ -1151,7 +1305,7 @@
     <div class="detail-hero" data-num="6">
       <div class="detail-hero-tag">Phase 6 · Sustain</div>
       <h2>Monitoring &amp; Evaluation</h2>
-      <p class="detail-hero-sub">Close the loop — track performance against KPIs, identify what's working, course-correct and continuously raise the bar for women's experience.</p>
+      <p class="detail-hero-sub">Close the loop: track performance against KPIs, identify what's working, course-correct and continuously raise the bar for women's experience.</p>
     </div>
 
     <div class="detail-section-title">Key Activities</div>
@@ -1197,6 +1351,270 @@
 
     <div class="detail-section-title">Navigate Phases</div>
     <div class="phase-nav" id="phaseNav5"></div>
+  </div>
+</div>
+
+<!-- ── Target Segment Identification ─────────────────────── -->
+<div class="screen" id="detail-ts">
+  <div class="ms-screen">
+    <button class="back-btn" onclick="showDetail(0)">← Back to Business Case</button>
+
+    <div class="detail-hero" data-num="">
+      <div class="detail-hero-tag">Phase 1 · Business Case</div>
+      <h2>Target Segment Identification</h2>
+      <p class="detail-hero-sub">Find nuance in your segmentation beyond the typical demographic/psychographic lens. Consider "life moments/stages" for individual (retail) clients or business sub-sectors and/or level of financial access/sophistication for business clients.</p>
+    </div>
+
+    <div style="background:var(--ned-green-lt);border:1px solid var(--border);border-left:3px solid var(--ned-green);border-radius:10px;padding:14px 18px;margin-bottom:24px;font-size:0.85rem;color:var(--text-secondary);line-height:1.6;">
+      <strong style="color:var(--ned-green);font-family:'Libre Franklin',sans-serif;">Vuyo</strong> the inline table below is just a sample, see PDF for additional detail.
+    </div>
+
+    <div class="detail-section-title">Defining the Market: Life Moments Framework</div>
+
+    <div class="lm-wrap">
+      <table class="lm-table">
+        <thead>
+          <tr>
+            <th class="lm-corner">Moment</th>
+            <th>Pursuing<br/>Education</th>
+            <th>Re/Entering<br/>the Workforce</th>
+            <th>Starting or<br/>Scaling a Business</th>
+            <th>Building or Exiting<br/>a Relationship</th>
+            <th>Investing<br/>in a Home</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lm-row-head">Context</td>
+            <td>Women are pursuing formal education at increasing rates around the world, graduating from college in higher numbers than men in some countries.</td>
+            <td>Women's labor force participation has increased in almost every country in the past three decades. 43% of educated women take a career break at some point to tend to their families, yet 90% say they would eventually like to return to work.</td>
+            <td>Women are starting businesses at significant rates globally, but on average, women's businesses are smaller and are more likely to be informal or semiformal.</td>
+            <td>An increasing proportion of women in developed economies are delaying marriage, but more are also cohabitating without marrying. Divorce rates have also been rising globally over the past few decades, with financial woes often cited as a top reason for divorce.</td>
+            <td>Women of all income levels are less likely to own homes than men, and just 20% of the world's land is in women's names. Acquiring a primary home is a life goal for many women, and having investment property is also a goal for some.</td>
+          </tr>
+          <tr>
+            <td class="lm-row-head">Consideration</td>
+            <td>Because of rising tertiary education costs, women hold a significant portion of student debt. When compounded with the gender pay gap that widens across women's lives, women can experience this as a double burden: higher debt and less capacity to pay it off.</td>
+            <td>On average, women start their careers earning less than their male counterparts – in some cases due to unequal pay rates and in others due to the sectors they work in. Later in life, women often opt for part-time work or to take career breaks. These factors can make it harder for women to establish a strong financial basis.</td>
+            <td>Women-owned/led businesses face a number of challenges in accessing capital sufficient to grow. Women tend to have less collateral than men, self-report lower business knowledge and take a different approach to risk.</td>
+            <td>Marrying or committing to a partner often involves combining assets, which means women may also have to share a spouse's liabilities. Splitting up can hit women harder financially if they have lower earnings and assets. Women who cohabitate without marriage are at even greater risk of a financial hit, due to their lack of claim over household assets.</td>
+            <td>The gender wage gap and other financial burdens women face can impact their capacity to afford purchasing or maintaining a home. There are also adverse cultural norms and marital legal regimes in some countries that limit women's rights – for example, their right to be on the title or to own more than 50% of a home.</td>
+          </tr>
+          <tr>
+            <td class="lm-row-head">Potential Solves</td>
+            <td>Access to low-interest student loans, as well as information and advice on the process, can be valuable for women pursuing education. Repayment deferral based on employment status can help women transitioning to the workforce post-education. Leading up to this moment, a goal-based savings account may be useful.</td>
+            <td>Information and tools around salary negotiation, financial planning and workforce re-entry could all prove highly useful for women in this life moment.</td>
+            <td>Relevant business information; formalisation support; education on cash flow forecasting and financing; modifications to loan policies, including accepting non-traditional collateral; access to mentoring, coaching and networks; supplier diversity programs; and access to female-friendly incubators are a few ways FSPs can support women.</td>
+            <td>Financial planning assistance and financial awareness trainings, accounts and tools that support with merging finances, loan repayment flexibility during separation, and access to legal advice may all be valuable.</td>
+            <td>Accounts to help women save for a down-payment, flexible mortgages during pregnancy and maternity leave, home insurance with home technical assistance, and legal advice are all solutions that may deliver value to women in this life moment.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="detail-section-title">Reference Materials</div>
+    <div class="pdf-links">
+      <a class="pdf-link" href="Additional Resources/Life-Moments-A-Strategy-for-Serving-Women-Throughout-Their-Lives-4.pdf" target="_blank">📄 Life Moments: A Strategy for Serving Women Throughout Their Lives</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── Market Research ───────────────────────────────────── -->
+<div class="screen" id="detail-mr">
+  <div class="ms-screen">
+    <button class="back-btn" onclick="showDetail(0)">← Back to Business Case</button>
+
+    <div class="detail-hero" data-num="">
+      <div class="detail-hero-tag">Phase 1 · Business Case</div>
+      <h2>Market Research</h2>
+      <p class="detail-hero-sub">Key external data categories to research when sizing the women's market opportunity and understanding the environment in which Nedbank operates.</p>
+    </div>
+
+    <div class="detail-section-title">Key Research Indicators</div>
+    <div class="ms-table-card" style="margin-bottom:32px;">
+      <table class="ms-table ms-table--text" style="width:100%;">
+        <thead>
+          <tr>
+            <th style="padding:13px 18px;text-align:left;font-size:0.78rem;font-weight:700;font-family:'Libre Franklin',sans-serif;letter-spacing:0.04em;background:var(--ned-green);color:#fff;width:30%;">Key Indicator</th>
+            <th style="padding:13px 18px;text-align:left;font-size:0.78rem;font-weight:700;font-family:'Libre Franklin',sans-serif;letter-spacing:0.04em;background:var(--ned-green);color:#fff;">Why it matters?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);">Demographics</td>
+            <td>Population size, age, distribution and life expectancy</td>
+          </tr>
+          <tr style="background:var(--chip-bg);">
+            <td style="font-weight:700;color:var(--text-primary);">Economy, employment and income</td>
+            <td>Market insights around employment, income levels and economic participation</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);">Financial behaviour</td>
+            <td>Access to financial services, financial behaviour trends, financial sector offerings</td>
+          </tr>
+          <tr style="background:var(--chip-bg);">
+            <td style="font-weight:700;color:var(--text-primary);">Environmental factors</td>
+            <td>Cultural norms and practices can act as enablers or barriers to entry for women's access to financial solutions</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Framework diagram -->
+    <div class="detail-section-title">Applying the Global Business Case</div>
+    <div class="bc-card">
+      <p class="bc-card-title">Building the Foundation of the Business Case</p>
+      <div class="bc-grid">
+
+        <!-- Row 1 · top questions -->
+        <div class="bc-tq1">
+          <p class="bc-q">What percentage of the labor force do women comprise?</p>
+          <p class="bc-q">What is the earning power of women in my country?</p>
+        </div>
+        <div class="bc-tq34">
+          <p class="bc-q">Are there policies/cultural issues that limit women's access to finance in my country?</p>
+          <p class="bc-q">What global female economy market trends could help build my business case?</p>
+        </div>
+
+        <!-- Row 2 · circles + connectors + outcome -->
+        <div class="bc-c1"><div class="bc-circle">Female Decision-Making and Purchasing Power</div></div>
+        <div class="bc-ln1"></div>
+        <div class="bc-c2"><div class="bc-circle">Female Entrepreneurship</div></div>
+        <div class="bc-ln2"></div>
+        <div class="bc-c3"><div class="bc-circle">Other National and Global Trends</div></div>
+        <div class="bc-ln3"></div>
+        <div class="bc-c4"><div class="bc-circle">Access to Finance and Service Gap</div></div>
+        <div class="bc-arr">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 10h12M12 5l5 5-5 5" stroke="var(--ned-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="bc-outcome">Opportunity for Financial Institutions to Target Women</div>
+
+        <!-- Row 3 · bottom questions -->
+        <div class="bc-bq2">
+          <p class="bc-q">What industry sub-sectors do women-owned firms tend to be in?</p>
+          <p class="bc-q">What percentage of firms are owned by women? What is the rate of entrepreneurship among women?</p>
+        </div>
+        <div class="bc-bq34">
+          <p class="bc-q">What information is available about women's access to finance in my country?</p>
+          <p class="bc-q">What is the finance gender gap in my market for unserved or underserved women?</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="detail-section-title">Reference Materials</div>
+    <div class="pdf-links">
+      <a class="pdf-link" href="1. Building the Foundations of the Business Case.pdf">📄 Building the Foundations of the Business Case</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── Gender Disaggregated Data ──────────────────────────── -->
+<div class="screen" id="detail-gdd">
+  <div class="ms-screen">
+    <button class="back-btn" onclick="showDetail(0)">← Back to Business Case</button>
+
+    <div class="detail-hero" data-num="">
+      <div class="detail-hero-tag">Phase 1 · Business Case</div>
+      <h2>Internal Data Analysis</h2>
+      <p class="detail-hero-sub">Sex-disaggregating Nedbank's client data across key datasets surfaces the women's opportunity and builds an evidence-based case for change.</p>
+    </div>
+
+    <!-- intro -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:28px;box-shadow:var(--card-shadow);">
+      <p style="font-size:0.92rem;line-height:1.7;color:var(--text-secondary);">The table below outlines the key indicators to extract and analyse from Nedbank's internal systems. Each metric should be cut by gender (where data exists) to reveal the gap between current performance and the women's segment opportunity. This disaggregated view is the foundation of a compelling internal business case.</p>
+    </div>
+
+    <!-- indicator table -->
+    <div class="detail-section-title">Key Indicators &amp; Why They Matter</div>
+    <div class="ms-table-card" style="margin-bottom:32px;">
+      <table class="ms-table ms-table--text" style="width:100%;">
+        <thead>
+          <tr>
+            <th style="padding:13px 18px;text-align:left;font-size:0.78rem;font-weight:700;font-family:'Libre Franklin',sans-serif;letter-spacing:0.04em;background:var(--ned-green);color:#fff;width:30%;">Key Indicator</th>
+            <th style="padding:13px 18px;text-align:left;font-size:0.78rem;font-weight:700;font-family:'Libre Franklin',sans-serif;letter-spacing:0.04em;background:var(--ned-green);color:#fff;">Why it matters?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);">Active main-banked base</td>
+            <td>Are women choosing Nedbank as their primary bank or holding secondary, low-value relationships? This is our core measure of wallet share.</td>
+          </tr>
+          <tr style="background:var(--chip-bg);">
+            <td style="font-weight:700;color:var(--text-primary);"># active credit accounts</td>
+            <td>Breadth of women's participation across credit products (home loans, vehicle finance, cards, personal loans) and highlights underserved product categories.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);">Gross loans &amp; advances (GLA)</td>
+            <td>Quantifies the total credit exposure to women clients. A direct measure of lending inclusion and the revenue opportunity in growing this book.</td>
+          </tr>
+          <tr style="background:var(--chip-bg);">
+            <td style="font-weight:700;color:var(--text-primary);">Average credit exposure (loan balance)</td>
+            <td>Signals whether women are accessing smaller or larger facilities, which may indicate risk aversion, affordability constraints, or systemic under-lending.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);">Net interest income (NII)</td>
+            <td>Isolates the interest margin contribution from women's credit and deposit activity, revealing the profitability of the segment's core banking relationship.</td>
+          </tr>
+          <tr style="background:var(--chip-bg);">
+            <td style="font-weight:700;color:var(--text-primary);"># TP's &amp; savings accounts (CASA)</td>
+            <td>Measures the foundation of the banking relationship. Women with only TP's represent a clear cross-sell gap into savings, investment, and credit products.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);">Total retail deposit book</td>
+            <td>Demonstrates the funding contribution women clients make to the bank's balance sheet.</td>
+          </tr>
+          <tr style="background:var(--chip-bg);">
+            <td style="font-weight:700;color:var(--text-primary);">Avg. deposit balance per client</td>
+            <td>Highlights savings capacity and financial resilience. Lower balances may indicate income constraints or the need for tailored savings and investment products.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);">Total headline earnings (NIR + NII)</td>
+            <td>Shows the full revenue picture: fee income plus interest income, enabling a true economic value assessment of the women's segment.</td>
+          </tr>
+          <tr style="background:var(--chip-bg);">
+            <td style="font-weight:700;color:var(--text-primary);">Advances-to-deposits ratio</td>
+            <td>Exposes whether women are net depositors funding lending to other segments.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);">Credit loss ratio (CLR)</td>
+            <td>Women globally demonstrate lower default rates (see global stats slide).</td>
+          </tr>
+          <tr style="background:var(--chip-bg);">
+            <td style="font-weight:700;color:var(--text-primary);">Cross-sell ratio (# of products/clients)</td>
+            <td>A lower ratio relative to the mean / mens' segment indicates untapped revenue potential and a CVP that isn't meeting women's full financial needs.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);">Digital adoption rate</td>
+            <td>Reveals channel preferences and accessibility barriers. High digital adoption supports a digitally-led CVP; low adoption may signal UX or trust gaps.</td>
+          </tr>
+          <tr style="background:var(--chip-bg);">
+            <td style="font-weight:700;color:var(--text-primary);">Avg. client tenure (yrs)</td>
+            <td>Statistically women tend to be more loyal once main-banked. Longer tenure = higher lifetime value and lower acquisition cost.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);">Net promoter score</td>
+            <td>Captures satisfaction and advocacy (provided we can evidence causation, i.e. "High NPS relative to (x), resulting in (y) behaviour or uptake).</td>
+          </tr>
+          <tr style="background:var(--chip-bg);">
+            <td style="font-weight:700;color:var(--text-primary);">Revenue per client</td>
+            <td>The single most direct measure of segment monetisation. A gap between men and women points to either product gaps, pricing issues, or under-engagement.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--text-primary);" style="border-bottom:none;">Net client acquisition rate</td>
+            <td style="border-bottom:none;">Tracks whether Nedbank is growing or losing share of the women's market.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="detail-section-title">Reference Materials</div>
+    <div class="pdf-links">
+      <a class="pdf-link" href="2. Becoming a Gender Data Driven Organisation.pdf">📄 Becoming a Gender Data Driven Organisation</a>
+      <a class="pdf-link" href="InBrief-Womens-Markets-Data-HowTo-Final.pdf" target="_blank">📄 Women's Markets Data: A How-to Guide</a>
+    </div>
   </div>
 </div>
 
@@ -1426,6 +1844,36 @@
 
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  function showTargetSegment() {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('detail-ts').classList.add('active');
+    PHASES.forEach((_, i) => {
+      const el = document.getElementById('nav' + i);
+      if (el) el.classList.toggle('active', i === 0);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showMarketResearch() {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('detail-mr').classList.add('active');
+    PHASES.forEach((_, i) => {
+      const el = document.getElementById('nav' + i);
+      if (el) el.classList.toggle('active', i === 0);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showGenderData() {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('detail-gdd').classList.add('active');
+    PHASES.forEach((_, i) => {
+      const el = document.getElementById('nav' + i);
+      if (el) el.classList.toggle('active', i === 0);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function showMarketSizing() {
