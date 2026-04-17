@@ -40,6 +40,9 @@
     --pill-bg:        #e6f2ec;
     --pill-text:      #006341;
     --chip-bg:        #f9f9f9;
+    --chart-label-green: #006341;
+    --tooltip-green:     #006341;
+    --tooltip-purple:    #531959;
   }
 
   /* Dark (explicit) */
@@ -59,6 +62,9 @@
     --pill-bg:        #1e3d2a;
     --pill-text:      #5fc98a;
     --chip-bg:        #1f3028;
+    --chart-label-green: #00E677;
+    --tooltip-green:     #00E677;
+    --tooltip-purple:    #C55DE8;
   }
 
   /* Dark (OS-driven auto) */
@@ -79,6 +85,9 @@
       --pill-bg:        #1e3d2a;
       --pill-text:      #5fc98a;
       --chip-bg:        #1f3028;
+      --chart-label-green: #00E677;
+      --tooltip-green:     #00E677;
+      --tooltip-purple:    #C55DE8;
     }
   }
 
@@ -542,6 +551,66 @@
       background: #1e3d2a;
       color: #5fc98a;
     }
+  }
+
+  /* ── Glossary ─────────────────────────────────────────────── */
+  .glossary-section {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .glossary-title {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .glossary-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .glossary-term {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ned-green);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .glossary-acronym {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+  .glossary-def {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+  .glossary-note {
+    margin-top: 5px;
+    font-size: 0.71rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.5;
   }
 
   /* footer */
@@ -1775,7 +1844,7 @@
     <div class="detail-section-title">Revenue Model: NII + NIR by Year</div>
     <div class="ms-bar-wrap" style="margin-bottom:8px;">
       <svg id="chart-revenue" viewBox="0 0 560 270" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;"></svg>
-      <p style="font-size:0.72rem;color:var(--text-secondary);margin-top:6px;">White dashed line = after-tax level (gross revenue basis, before CIR/CLR). See Profit Bridge below for cost-adjusted attributable profit. 5-year totals: Gross NII+NIR R3,583M · NPL savings R680.9M · Pre-tax R4,264M · After-tax R3,113M.</p>
+      <p style="font-size:0.72rem;color:var(--text-secondary);margin-top:6px;padding-left:9.82%;padding-right:2.68%;">Teal segment = after-tax revenue (gross revenue basis, before CIR/CLR). See Profit Bridge below for cost-adjusted attributable profit. 5-year totals: Gross NII+NIR R3,583M · NPL savings R680.9M · Pre-tax R4,264M · After-tax R3,113M.</p>
     </div>
 
     <!-- Profit Bridge + Investment Plan -->
@@ -1859,6 +1928,66 @@
       ARPU of R4,700/client is deliberately conservative vs the ~R7,400 implied by Nedbank's 2024 group NII+NIR ÷ 3.7M clients, reflecting that new/unbanked female clients start with fewer products. CIR of 55% applies the group ratio; actual incremental CIR for new clients is likely lower as fixed infrastructure costs (branches, IT) are already absorbed: adjust Assumptions!B38 to stress-test. NPL savings differential uses women's CLR of 2.2% vs blended 4.3% (source: FAW Alliance Analytics 2025): SA-specific NCR data may differ.<br/>
       Sources: Nedbank Group Annual Results 2024; <a href="https://finmark.org.za" target="_blank">FinScope SA 2024</a>, FinMark Trust; <a href="https://allianceforfinancialinclusion.org" target="_blank">FAW Alliance Analytics 2025</a>, Financial Alliance for Women.
     </p>
+
+    <div class="glossary-section">
+      <div class="glossary-title">Glossary of Terms</div>
+      <div class="glossary-grid">
+
+        <div class="glossary-item">
+          <div class="glossary-term">Non-Performing Loans <span class="glossary-acronym">NPL</span></div>
+          <div class="glossary-def">Loans where the borrower has not made scheduled payments for 90+ days. NPL rate expresses this as a percentage of the total loan book.</div>
+          <div class="glossary-note">Used in this business case as a proxy for credit risk quality. A lower NPL rate for women's segments (evidence-based) implies lower impairment charges and therefore higher net revenue attributable to this CVP.</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Credit Loss Ratio <span class="glossary-acronym">CLR</span></div>
+          <div class="glossary-def">The actual rand value of credit impairments recognised in the P&amp;L, expressed as a percentage of the average loan book for the period.</div>
+          <div class="glossary-note">CLR is the accounting line item (what hits the income statement). NPL is the asset-quality indicator (what lives on the balance sheet). We modelled NPL savings as a revenue uplift proxy because CLR data at segment level was unavailable; the Profit Bridge applies a standard 2.2% CLR to the full book to reflect true P&amp;L cost.</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Net Interest Income <span class="glossary-acronym">NII</span></div>
+          <div class="glossary-def">Interest earned on lending products (home loans, personal loans, overdrafts, credit cards) minus interest paid on deposits and funding. The primary revenue line for a retail bank.</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Non-Interest Revenue <span class="glossary-acronym">NIR</span></div>
+          <div class="glossary-def">Fee and commission income not directly linked to interest: transactional fees, card interchange, account maintenance charges, insurance commissions, and advisory fees.</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Average Revenue Per User <span class="glossary-acronym">ARPU</span></div>
+          <div class="glossary-def">Total NII + NIR revenue divided by the active client base for a given period. Used here as R4,700 per annum — a conservative estimate derived from Nedbank's 2024 retail revenue and client data.</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Cost-to-Income Ratio <span class="glossary-acronym">CIR</span></div>
+          <div class="glossary-def">Operating costs as a percentage of total income. A CIR of 55% (applied in the Profit Bridge) means R0.55 of cost is incurred for every R1.00 of revenue — in line with Nedbank's reported group CIR for 2024.</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Weighted Average Cost of Capital <span class="glossary-acronym">WACC</span></div>
+          <div class="glossary-def">The blended rate a business must earn on its asset base to satisfy both debt and equity holders. Used as the discount rate in NPV calculations. Applied at 16% here, consistent with Nedbank's published WACC guidance.</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Net Present Value <span class="glossary-acronym">NPV</span></div>
+          <div class="glossary-def">The sum of all future after-tax cash flows discounted back to today at the WACC. A positive NPV confirms the programme creates value above the cost of capital. The 5-year NPV of this CVP is R1.63B.</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Total / Serviceable / Obtainable Market <span class="glossary-acronym">TAM · SAM · SOM</span></div>
+          <div class="glossary-def">TAM: all women 15+ in South Africa (21.5M). SAM: unbanked and underbanked women reachable by a retail bank (12.2M). SOM: realistic 5-year new client target given Nedbank's distribution, budget, and execution capacity (370K).</div>
+        </div>
+
+        <div class="glossary-item">
+          <div class="glossary-term">Customer Value Proposition <span class="glossary-acronym">CVP</span></div>
+          <div class="glossary-def">The specific combination of products, services, benefits, and experiences offered to a defined customer segment. A Women Centred CVP goes beyond product features to address financial, social, and emotional needs unique to women.</div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -2226,7 +2355,9 @@
 
       const W=500, H=210, pl=46, pr=10, pt=16, pb=46;
       const cw=W-pl-pr, ch=H-pt-pb;
-      const Xp=i=>pl+(i/4)*cw;
+      // xm: inset margin so Y1 starts clear of y-axis labels, even spacing retained
+      const xm=14;
+      const Xp=i=>pl+xm+(i/4)*(cw-2*xm);
       const Yp=v=>H-pb-(v/340000)*ch;
 
       const active  = [15000, 48500, 113650, 212285, 331057];
@@ -2261,13 +2392,13 @@
         style:`fill:none;stroke:${C_PURPLE};stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:5,3`
       }));
 
-      // active base dots + labels
+      // active base dots + labels (dark mode: #00E677 via CSS var)
       const fmtK=v=>v>=100000?`${(v/1000).toFixed(0)}K`:`${(v/1000).toFixed(1)}K`;
       active.forEach((v,i)=>{
         rsvg.appendChild(mk('circle',{cx:Xp(i),cy:Yp(v),r:4.5,
           style:`fill:${C_GREEN};stroke:white;stroke-width:1.5`}));
         addTxt(rsvg,Xp(i),Math.max(Yp(v)-9,13),fmtK(v),
-          `font-size:8.5px;font-weight:700;fill:${C_GREEN};text-anchor:middle`);
+          `font-size:8.5px;font-weight:700;fill:var(--chart-label-green,${C_GREEN});text-anchor:middle`);
       });
 
       // new clients dots (skip Y1 — coincides with active)
@@ -2282,19 +2413,26 @@
           'font-size:9px;font-weight:600;fill:var(--text-secondary,#666);text-anchor:middle');
       });
 
-      // legend
+      // legend — centred within viewBox (W=500)
+      // Swatch = 18px + 4px gap = 22px; text estimates at 7.5px font
       const lg=H-6;
-      rsvg.appendChild(mk('line',{x1:pl,y1:lg,x2:pl+18,y2:lg,
+      const lgSwatch=22, lgText1=152, lgText2=82, lgBetween=18;
+      const lgTotalW = lgSwatch+lgText1 + lgBetween + lgSwatch+lgText2;
+      const lg1x = Math.round((W-lgTotalW)/2);
+      const lg2x = lg1x + lgSwatch + lgText1 + lgBetween;
+
+      rsvg.appendChild(mk('line',{x1:lg1x,y1:lg,x2:lg1x+18,y2:lg,
         style:`stroke:${C_GREEN};stroke-width:2.5`}));
-      rsvg.appendChild(mk('circle',{cx:pl+9,cy:lg,r:3.5,
+      rsvg.appendChild(mk('circle',{cx:lg1x+9,cy:lg,r:3.5,
         style:`fill:${C_GREEN};stroke:white;stroke-width:1.5`}));
-      addTxt(rsvg,pl+22,lg+3.5,'Active client base (post-retention)',
+      addTxt(rsvg,lg1x+22,lg+3.5,'Active client base (post-retention)',
         'font-size:7.5px;fill:var(--text-secondary,#777)');
-      rsvg.appendChild(mk('line',{x1:248,y1:lg,x2:266,y2:lg,
+
+      rsvg.appendChild(mk('line',{x1:lg2x,y1:lg,x2:lg2x+18,y2:lg,
         style:`stroke:${C_PURPLE};stroke-width:1.8;stroke-dasharray:5,3`}));
-      rsvg.appendChild(mk('circle',{cx:257,cy:lg,r:3,
+      rsvg.appendChild(mk('circle',{cx:lg2x+9,cy:lg,r:3,
         style:`fill:${C_PURPLE};stroke:white;stroke-width:1`}));
-      addTxt(rsvg,270,lg+3.5,'New clients (annual)',
+      addTxt(rsvg,lg2x+22,lg+3.5,'New clients (annual)',
         'font-size:7.5px;fill:var(--text-secondary,#777)');
 
       // ── Tooltip (HTML overlay, appended to body) ─────────────
@@ -2309,10 +2447,11 @@
           'box-shadow:0 4px 20px rgba(0,0,0,0.15)',
           'min-width:170px'
         ].join(';');
+        // Tooltip colours respond to dark/light via CSS custom properties
         tt.innerHTML = `
           <div id="ramp-tt-yr"  style="font-size:10px;font-weight:700;color:var(--text-primary);margin-bottom:5px;border-bottom:1px solid var(--border);padding-bottom:4px;"></div>
-          <div id="ramp-tt-new" style="font-size:9px;color:#531959;margin-top:4px;"></div>
-          <div id="ramp-tt-act" style="font-size:9px;color:#006341;font-weight:600;margin-top:2px;"></div>`;
+          <div id="ramp-tt-new" style="font-size:9px;color:var(--tooltip-purple,#531959);margin-top:4px;"></div>
+          <div id="ramp-tt-act" style="font-size:9px;color:var(--tooltip-green,#006341);font-weight:600;margin-top:2px;"></div>`;
         document.body.appendChild(tt);
       }
       const showTT = (e,i) => {
@@ -2347,17 +2486,19 @@
     // ─── Chart 2: Revenue Model (stacked bars) ────────────────
     const rvsvg = document.getElementById('chart-revenue');
     if (rvsvg) {
-      // Brand colours: Green Spectrum + Speck of Purple
-      const RV_GREEN  = '#006341';  // Nedbank Green – Gross NII+NIR
-      const RV_LIME   = '#CAD942';  // Speck: Lime/Yellow-green – NPL savings
-      const RV_AFTERTAX_STROKE = 'rgba(255,255,255,0.9)';
+      // Brand colours: three-segment stacked bar
+      const RV_AFTERTAX = '#10A867'; // Mid-green – after-tax revenue (bottom segment)
+      const RV_GREEN    = '#006341'; // Nedbank Green – gross NII+NIR remainder (middle)
+      const RV_LIME     = '#D8F000'; // Yellow-green – NPL savings (top segment)
 
-      const W=560, H=270, pl=55, pr=15, pt=22, pb=54;
+      const W=560, H=270, pl=55, pr=15, pt=30, pb=54;
       const cw=W-pl-pr, ch=H-pt-pb;
-      const Xp=i=>pl+(i/4)*cw;
+      const xm=30; // inset so Y1 bar clears y-axis labels, even spacing retained
+      const Xp=i=>pl+xm+(i/4)*(cw-2*xm);
       const Yp=v=>H-pb-(v/2000)*ch;
       const Yb=H-pb;
       const BW=52;
+      const OL=3; // overlap px to hide interior rounded corners between segments
 
       const gross=[70.5, 228.0, 568.3,1061.4,1655.3];
       const npl  =[14.2,  45.8, 107.4, 200.6, 312.8];
@@ -2373,35 +2514,35 @@
           'font-size:9px;fill:var(--text-secondary,#888);text-anchor:end');
       });
 
-      // bars — store hit-zone data
+      // bars — three segments per bar
       const barRects = [];
       gross.forEach((g,i)=>{
         const cx=Xp(i), x=cx-BW/2;
-        const gh=Math.max((g/2000)*ch, 2);
-        const nh=(npl[i]/2000)*ch;
-        const barTop=Yb-gh-nh;
+        const atH = Math.max((at[i]/2000)*ch, 1);         // after-tax height
+        const grH = Math.max(((g-at[i])/2000)*ch, 0);    // gross minus after-tax
+        const nh  = (npl[i]/2000)*ch;                     // NPL savings height
+        const barTop = Yb - atH - grH - nh;
 
-        // gross NII+NIR segment (Nedbank Green)
-        rvsvg.appendChild(mk('rect',{x,y:Yb-gh,width:BW,height:gh,
-          style:`fill:${RV_GREEN}`,rx:3}));
-        // NPL savings segment (Lime Speck)
-        if(nh>1) rvsvg.appendChild(mk('rect',{x,y:barTop,width:BW,height:nh,
+        // Draw order: after-tax → NPL → middle gross
+        // Middle is drawn last so it covers the interior rounded corners of the other two
+
+        // After-tax (bottom): extend upward by OL so middle rect hides its rounded top
+        rvsvg.appendChild(mk('rect',{x,y:Yb-atH-OL,width:BW,height:atH+OL,
+          style:`fill:${RV_AFTERTAX}`,rx:3}));
+        // NPL savings (top): extend downward by OL so middle rect hides its rounded bottom
+        if(nh>0.5) rvsvg.appendChild(mk('rect',{x,y:barTop,width:BW,height:nh+OL,
           style:`fill:${RV_LIME}`,rx:3}));
+        // Middle gross remaining (square): drawn on top of both extensions, hiding inner curves
+        if(grH>0) rvsvg.appendChild(mk('rect',{x,y:Yb-atH-grH,width:BW,height:grH,
+          style:`fill:${RV_GREEN}`,rx:0}));
 
-        // after-tax dashed white line inside bar
-        const aty=Yp(at[i]);
-        if(aty>=barTop && aty<=Yb) {
-          rvsvg.appendChild(mk('line',{x1:x,y1:aty,x2:x+BW,y2:aty,
-            style:`stroke:${RV_AFTERTAX_STROKE};stroke-width:1.5;stroke-dasharray:3,2`}));
-        }
-
-        // pre-tax total label above bar
+        // pre-tax label sits directly above bar — no clamping for consistent positioning
         const pre=g+npl[i];
         const lbl=pre>=1000?`R${(pre/1000).toFixed(1)}B`:`R${Math.round(pre)}M`;
-        addTxt(rvsvg,cx,Math.max(barTop-5,pt+10),lbl,
-          `font-size:8.5px;font-weight:700;fill:${RV_GREEN};text-anchor:middle`);
+        addTxt(rvsvg,cx,barTop-6,lbl,
+          `font-size:8.5px;font-weight:700;fill:var(--chart-label-green,${RV_GREEN});text-anchor:middle`);
 
-        barRects.push({cx, x, barTop, i});
+        barRects.push({cx,x,barTop,i});
       });
 
       // x-axis labels
@@ -2413,17 +2554,28 @@
           'font-size:7.5px;fill:var(--text-secondary,#999);text-anchor:middle');
       });
 
-      // legend
+      // legend — centred within viewBox (W=560)
+      // Three items at 8px font (~4.5px/char). Swatch 12px + 3px gap = 15px per item prefix.
+      // "After-tax revenue" 17ch≈77px → item≈92px
+      // "Gross NII+NIR"     13ch≈59px → item≈74px
+      // "NPL savings"       11ch≈50px → item≈65px
+      // Gaps between items: 16px. Total: 92+16+74+16+65 = 263px
       const lg=H-10;
-      rvsvg.appendChild(mk('rect',{x:pl,y:lg-7,width:12,height:7,style:`fill:${RV_GREEN}`,rx:1}));
-      addTxt(rvsvg,pl+15,lg,'Gross NII+NIR','font-size:8px;fill:var(--text-secondary,#666)');
-      rvsvg.appendChild(mk('rect',{x:172,y:lg-7,width:12,height:7,style:`fill:${RV_LIME}`,rx:1}));
-      addTxt(rvsvg,187,lg,'NPL savings','font-size:8px;fill:var(--text-secondary,#666)');
-      // after-tax swatch: green rect with white dashed line
-      rvsvg.appendChild(mk('rect',{x:282,y:lg-7,width:18,height:7,style:`fill:${RV_GREEN};opacity:0.5`,rx:1}));
-      rvsvg.appendChild(mk('line',{x1:282,y1:lg-3,x2:300,y2:lg-3,
-        style:`stroke:${RV_AFTERTAX_STROKE};stroke-width:1.5;stroke-dasharray:3,2`}));
-      addTxt(rvsvg,305,lg,'After-tax level','font-size:8px;fill:var(--text-secondary,#666)');
+      const lgS=15, lgG=16;
+      const lgW1=92, lgW2=74, lgW3=65;
+      const lgTotal=lgW1+lgG+lgW2+lgG+lgW3;
+      const lg1x=Math.round((W-lgTotal)/2);
+      const lg2x=lg1x+lgW1+lgG;
+      const lg3x=lg2x+lgW2+lgG;
+
+      rvsvg.appendChild(mk('rect',{x:lg1x,y:lg-7,width:12,height:7,style:`fill:${RV_AFTERTAX}`,rx:1}));
+      addTxt(rvsvg,lg1x+lgS,lg,'After-tax revenue','font-size:8px;fill:var(--text-secondary,#666)');
+
+      rvsvg.appendChild(mk('rect',{x:lg2x,y:lg-7,width:12,height:7,style:`fill:${RV_GREEN}`,rx:1}));
+      addTxt(rvsvg,lg2x+lgS,lg,'Gross NII+NIR','font-size:8px;fill:var(--text-secondary,#666)');
+
+      rvsvg.appendChild(mk('rect',{x:lg3x,y:lg-7,width:12,height:7,style:`fill:${RV_LIME}`,rx:1}));
+      addTxt(rvsvg,lg3x+lgS,lg,'NPL savings','font-size:8px;fill:var(--text-secondary,#666)');
 
       // ── Revenue tooltip ───────────────────────────────────────
       let rvtt = document.getElementById('rv-tt');
@@ -2443,7 +2595,7 @@
             margin-bottom:3px;"></div>
           <div id="rv-tt-pre" style="font-size:9px;color:var(--text-secondary);
             margin-bottom:3px;"></div>
-          <div id="rv-tt-at"  style="font-size:9px;font-weight:700;color:#006341;
+          <div id="rv-tt-at"  style="font-size:9px;font-weight:700;color:#10A867;
             padding-top:4px;border-top:1px solid var(--border);margin-top:3px;"></div>`;
         document.body.appendChild(rvtt);
       }
@@ -2468,7 +2620,7 @@
       const hideRvTT = () => { rvtt.style.display='none'; };
 
       // invisible hit rects over each bar group
-      barRects.forEach(({cx, x, barTop, i})=>{
+      barRects.forEach(({cx,x,barTop,i})=>{
         const hitH = Yb-barTop+4;
         const hit = mk('rect',{x:x-2,y:barTop-2,width:BW+4,height:hitH,
           style:'fill:transparent;cursor:crosshair'});
